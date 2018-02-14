@@ -61,7 +61,7 @@ The robot is able to complete only one mission at a time, enforced by the "not_b
 - *strategic plan control* This node performs the problem decomposition as a service (steps 1-3 of the flow).
 - *tactical plan control* This node is an action interface that listens for the "complete_mission" action (step 5 of the flow).
 
-- *strategic/tactical planner interface*, *strategic/tactical problem generation*, *strategic/tactical plan parsing*, *strategic/tactical plan dispatch* These nodes prodce a PDDL problem, pass it to a planner, parse the planner output, and dispatch the resulting plan, all as services.
+- *strategic/tactical planner interface*, *strategic/tactical problem generation*, *strategic/tactical plan parsing*, *strategic/tactical plan dispatch* These nodes produce a PDDL problem, pass it to a planner, parse the planner output, and dispatch the resulting plan, all as services.
 
 ## Running the Exampe
 
