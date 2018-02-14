@@ -44,6 +44,11 @@ param="$param
 - knowledge_type: 1
   instance_type: ''
   instance_name: ''
+  attribute_name: 'not_busy'
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
   attribute_name: 'robot_at'
   values:
   - {key: 'r', value: 'kenny'}

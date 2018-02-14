@@ -8,6 +8,7 @@
 
 #include "rosplan_knowledge_msgs/KnowledgeItem.h"
 #include "rosplan_knowledge_msgs/KnowledgeUpdateService.h"
+#include "rosplan_knowledge_msgs/GetAttributeService.h"
 #include "rosplan_dispatch_msgs/ActionDispatch.h"
 #include "rosplan_dispatch_msgs/ActionFeedback.h"
 
@@ -29,11 +30,16 @@ namespace KCL_rosplan {
 
 	private:
 
+		ros::ServiceClient current_goals_client;
+		ros::ServiceClient mission_goals_client;
 		ros::ServiceClient cancel_client;
 		ros::ServiceClient problem_client;
 		ros::ServiceClient planning_client;
 		ros::ServiceClient parsing_client;
 		ros::ServiceClient dispatch_client;
+
+		std::vector<rosplan_knowledge_msgs::KnowledgeItem> mission_goals;
+		std::vector<rosplan_knowledge_msgs::KnowledgeItem> old_goals;
 
 	public:
 
@@ -42,6 +48,8 @@ namespace KCL_rosplan {
 
 		/* listen to and process action_dispatch topic */
 		bool concreteCallback(const rosplan_dispatch_msgs::ActionDispatch::ConstPtr& msg);
+		bool initGoals(const std::string &mission);
+		void restoreGoals();
 	};
 }
 #endif

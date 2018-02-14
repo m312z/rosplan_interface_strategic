@@ -60,3 +60,31 @@ done;
 
 rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 0
 $param"
+
+param2="knowledge:
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i01'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i02'}
+  - {key: 'wp', value: 'wp2'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i03'}
+  - {key: 'wp', value: 'wp3'}
+  function_value: 0.0";
+rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 1
+$param2"

@@ -3,7 +3,6 @@
 
 	<!-- arguments -->
 	<arg name="domain_strategic"	default="$(find rosplan_interface_strategic)/common/domain_strand.pddl" />
-	<arg name="domain_tactical"		default="$(find rosplan_interface_strategic)/common/domain_strand.pddl" />
 
 	<!-- scene database (MongoDB) -->
 	<include file="$(find mongodb_store)/launch/mongodb_store.launch">
@@ -12,10 +11,21 @@
 
 	<!-- knowledge base -->
 	<node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
-		<param name="domain_path" value="$(arg domain_tactical)" />
+		<param name="domain_path" value="$(arg domain_strategic)" />
 		<param name="database_path" value="$(find rosplan_knowledge_base)/common/mongoDB/" />
 		<!-- conditional planning flags -->
 		<param name="use_unknowns" value="false" />
+	</node>
+
+	<!-- strategic plan control -->
+	<node name="rosplan_interface_strategic_control" pkg="rosplan_interface_strategic" type="rpstrategiccontrol" respawn="false" output="screen">
+
+		<!-- tactical planning interfaces -->
+		<param name="problem_service_topic"  value="/tactical_problem_interface/problem_generation_server" />
+		<param name="planning_service_topic" value="/tactical_planner_interface/planning_server" />
+		<param name="parsing_service_topic"  value="/tactical_parsing_interface/parse_plan" />
+		<param name="complete_plan_topic"    value="/tactical_parsing_interface/complete_plan" />
+
 	</node>
 
 	<!-- tactical plan control -->
@@ -53,7 +63,7 @@
 		<arg name="use_problem_topic"    value="true" />
 		<arg name="problem_topic"        value="/tactical_problem_interface/problem_instance" />
 		<arg name="planner_topic"        value="planner_output" />
-		<arg name="domain_path"          value="$(arg domain_tactical)" />
+		<arg name="domain_path"          value="$(arg domain_strategic)" />
 		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_tactical.pddl" />
 		<arg name="data_path"            value="$(find rosplan_demos)/common/" />
 		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
@@ -70,7 +80,7 @@
 	<!-- tactical problem generation -->
 	<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
 		<arg name="node_name"        value="tactical_problem_interface" />
-		<arg name="domain_path"      value="$(arg domain_tactical)" />
+		<arg name="domain_path"      value="$(arg domain_strategic)" />
 		<arg name="problem_path"     value="$(find rosplan_demos)/common/problem_tactical.pddl" />
 		<arg name="problem_topic"    value="problem_instance" />
 	</include>

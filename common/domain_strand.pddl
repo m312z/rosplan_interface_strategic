@@ -7,6 +7,7 @@
 	robot
 	item
 	material
+	mission
 		- object
 )
 
@@ -30,12 +31,14 @@
 	(material_at ?m - material ?wp - waypoint)
 	(complete ?i - item ?wp - waypoint)
 
-	(strategic_planning)
+	(mission_complete ?m - mission)
+	(not_busy)
 )
 
 (:functions
 	(carrying ?r -robot ?m - material)
 	(requires ?i - item ?m - material)
+	(mission_duration ?m - mission)
 )
 
 ;; Move to any waypoint, avoiding terrain
@@ -171,14 +174,16 @@
 )
 
 (:durative-action complete_mission
-	:parameters (?r - robot ?i - item ?wp - waypoint)
-	:duration ( = ?duration 3)
+	:parameters (?r - robot ?m - mission ?wp - waypoint)
+	:duration ( = ?duration (mission_duration ?m))
 	:condition (and
+		(at start (not_busy))
 		(over all (robot_at ?r ?wp))
-		(at start (strategic_planning))
 		)
 	:effect (and
-		(at end (complete ?i ?wp))
+		(at start (not (not_busy)))
+		(at end (mission_complete ?m))
+		(at end (not_busy))
 		)
 )
 
