@@ -1,17 +1,17 @@
 # rosplan_interface_strategic
 
-This repository holds a package for strategic-tactical planning with rosplan. This incldes:
+This repository holds a package for strategic-tactical planning with rosplan. This includes:
 - The tactical action interface, which performs planning and execution as an action within a strategic plan.
 - An example launch file and scripts.
 - An example domain file.
 
 This README describes how to run a version of strategic-tactical planning in ROSPlan. It is split into the following parts:
 
-(1) Describing the PDDL domain and problem used in the example, and how it can be used for strategic-tactical planning.
-(2) Detailing the ROS nodes used in the example launch.
-(3) Instructions for running the example.
+1) Describing the PDDL domain and problem used in the example, and how it can be used for strategic-tactical planning.
+2) Detailing the ROS nodes used in the example launch.
+3) Instructions for running the example.
 
-# The PDDL domain and problem
+## The PDDL domain and problem
 
 The PDDL domain file is contained in the folder "common".
 
@@ -56,25 +56,27 @@ A mission consists of the following PDDL constructs:
 ```
 The robot is able to complete only one mission at a time, enforced by the "not_busy" predicate.
 
-# The nodes in the launch file
+## The nodes in the launch file
 
 - *strategic plan control* This node performs the problem decomposition as a service (steps 1-3 of the flow).
 - *tactical plan control* This node is an action interface that listens for the "complete_mission" action (step 5 of the flow).
 
 - *strategic/tactical planner interface*, *strategic/tactical problem generation*, *strategic/tactical plan parsing*, *strategic/tactical plan dispatch* These nodes prodce a PDDL problem, pass it to a planner, parse the planner output, and dispatch the resulting plan, all as services.
 
-# Running the Exampe
+## Running the Exampe
 
 To run the example, open two terminals and source the workspace in both.
 
 In the first terminal terminal we launch everything using the command:
-`roslaunch rosplan_interface_strategic strategic_tactical.launch`
+```
+roslaunch rosplan_interface_strategic strategic_tactical.launch`
+```
 
 In the second terminal, run the three scripts.
 ```
-rosrun rosplan\_interface\_strategic strategic\_init.bash;
-rosrun rosplan\_interface\_strategic strategic\_goal.bash;
-rosrun rosplan\_interface\_strategic strategic\_plan.bash;
+rosrun rosplan_interface_strategic strategic_init.bash;
+rosrun rosplan_interface_strategic strategic_goal.bash;
+rosrun rosplan_interface_strategic strategic_plan.bash;
 ```
 These scripts:
 1. Add the initial state to the Knowledge Base (init)
@@ -82,7 +84,9 @@ These scripts:
 3. Call all the services mentioned above to complete the scenario (plan)
 
 Optionally (but recommended) is to view the plans currenty under execution. To do this source the workspace and run:
-`rqt --standalone rosplan_rqt.esterel_plan_viewer & rqt --standalone rosplan_rqt.esterel_plan_viewer`
+```
+rqt --standalone rosplan_rqt.esterel_plan_viewer & rqt --standalone rosplan_rqt.esterel_plan_viewer
+```
 
 In the first window view the strategic plan by entering the topic "/strategic\_plan\_dispatch/plan_graph" and pressing refresh.
 In the second window view the tactical plan: "/tactical\_plan\_dispatch/plan_graph".
