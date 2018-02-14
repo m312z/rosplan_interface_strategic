@@ -92,5 +92,5 @@ In the first window view the strategic plan by entering the topic "/strategic\_p
 In the second window view the tactical plan: "/tactical\_plan\_dispatch/plan_graph".
 
 The windows should look like:
-![plans](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png)
+![plans](https://github.com/m312z/rosplan_interface_strategic/blob/master/readme_image.png)
 
