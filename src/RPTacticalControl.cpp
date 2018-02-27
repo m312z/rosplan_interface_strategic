@@ -133,13 +133,16 @@ namespace KCL_rosplan {
 
 		std_srvs::Empty empty;
 		cancel_client.call(empty);
+		ros::Duration(1).sleep(); // sleep for a second
 		problem_client.call(empty);
+		ros::Duration(1).sleep(); // sleep for a second
 
 		// send to planner
 		if(planning_client.call(empty)) {
-
+			ros::Duration(1).sleep(); // sleep for a second
 			// parse planner output
 			parsing_client.call(empty);
+			ros::Duration(1).sleep(); // sleep for a second
 
 			// dispatch tactical plan
 			bool dispatch_success = dispatch_client.call(empty);

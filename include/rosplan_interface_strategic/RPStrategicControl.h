@@ -7,6 +7,7 @@
 #include "rosplan_knowledge_msgs/KnowledgeUpdateService.h"
 #include "rosplan_knowledge_msgs/GetAttributeService.h"
 #include "rosplan_dispatch_msgs/EsterelPlan.h"
+#include "rosplan_dispatch_msgs/ActionDispatch.h"
 
 #include "std_msgs/String.h"
 #include "std_srvs/Empty.h"
@@ -31,6 +32,7 @@ namespace KCL_rosplan {
 		/* rosplan knowledge interface */
 		ros::ServiceClient update_knowledge_client;
 		ros::ServiceClient current_goals_client;
+		ros::ServiceClient current_knowledge_client;
 		std::vector<rosplan_knowledge_msgs::KnowledgeItem> goals;
 		std::map< std::string, std::vector<rosplan_knowledge_msgs::KnowledgeItem> > missions;
 
@@ -41,6 +43,7 @@ namespace KCL_rosplan {
 
 		rosplan_dispatch_msgs::EsterelPlan last_plan;
 		bool new_plan_recieved;
+		diagnostic_msgs::KeyValue getEndPoint(std::vector<rosplan_dispatch_msgs::EsterelPlanNode> & node) const;
 
 	public:
 
