@@ -23,6 +23,7 @@
 	(:predicates
 		(robot_at ?r - robot ?wp - waypoint)
 		(localised ?r - robot)
+		(not_localised ?r - robot)
 
 		(undocked ?r - robot)
 		(docked ?r - robot)
@@ -89,9 +90,13 @@
 		:parameters (?r - robot)
 		:duration ( = ?duration 60)
 		:condition (and
+			(at start (not_localised ?r))
 			(over all (undocked ?r))
 			)
-		:effect (at end (localised ?r))
+		:effect (and
+			(at end (localised ?r))
+			(at end (not (not_localised ?r)))
+			)
 	)
 
 	;; Dock to charge
@@ -206,6 +211,8 @@
 		:parameters (?r - robot ?m - mission ?from ?to - waypoint)
 		:duration ( = ?duration (mission_duration ?m))
 		:condition (and
+			(at start (undocked ?r))
+			(at start (localised ?r))
 			(at start (not_busy))
 			(at start (robot_at ?r ?from))
 			(over all (mission_at ?m ?from))

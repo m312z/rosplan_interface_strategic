@@ -82,9 +82,12 @@ namespace KCL_rosplan {
 		std::vector<diagnostic_msgs::KeyValue> start_locations;
 		//the location the robot will be after the mission has been
 		std::vector<diagnostic_msgs::KeyValue> end_points;
+		//if the robot will dock at all in each plan
+		std::vector<bool> willDock(goals.size() - 1, false);
+		//index for loop
+		int index = 0;
 		std::vector<rosplan_knowledge_msgs::KnowledgeItem>::iterator git = goals.begin();
 		for(; git!=goals.end(); git++) {
-
 			ss.str("");
 			ss << "mission_" << mission_durations.size();
 
@@ -111,10 +114,15 @@ namespace KCL_rosplan {
 			double max_time = 0;
 			std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::iterator nit = last_plan.nodes.begin();
 			for(; nit != last_plan.nodes.end(); nit++) {
+				//problem that this will overshoot time of plan now - however, could be fine as we should do upper estimate
 				double time = nit->action.dispatch_time + nit->action.duration;
 				if(time > max_time) max_time = time;
+				//check if action docks for anything - have decided probs don't need
+				if(nit->action.name == "dock"){
+					willDock[index] = true;
+				}
 				//get the only first non move or undock action
-				if(start_locations.size() <= mission_durations.size() && !(nit->action.name == "goto_waypoint" || nit->action.name == "undock")){
+				if(start_locations.size() <= mission_durations.size() && !(nit->action.name == "goto_waypoint" || nit->action.name == "undock" || nit->action.name == "localise")){
 					std::cout<<"action we are starting at: "<<nit->action.name<<std::endl;
 					//loop through parameters of that action
 					for(std::vector<diagnostic_msgs::KeyValue>::iterator i = nit->action.parameters.begin(); i != nit->action.parameters.end(); ++i){
@@ -125,6 +133,9 @@ namespace KCL_rosplan {
 					}
 				}
 			}
+
+			//increase index
+			index++;
 
 			//get the end points
 			end_points.push_back(getEndPoint(last_plan.nodes));
