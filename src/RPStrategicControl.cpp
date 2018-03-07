@@ -82,10 +82,6 @@ namespace KCL_rosplan {
 		std::vector<diagnostic_msgs::KeyValue> start_locations;
 		//the location the robot will be after the mission has been
 		std::vector<diagnostic_msgs::KeyValue> end_points;
-		//if the robot will dock at all in each plan
-		std::vector<bool> willDock(goals.size() - 1, false);
-		//index for loop
-		int index = 0;
 		std::vector<rosplan_knowledge_msgs::KnowledgeItem>::iterator git = goals.begin();
 		for(; git!=goals.end(); git++) {
 			ss.str("");
@@ -117,13 +113,8 @@ namespace KCL_rosplan {
 				//problem that this will overshoot time of plan now - however, could be fine as we should do upper estimate
 				double time = nit->action.dispatch_time + nit->action.duration;
 				if(time > max_time) max_time = time;
-				//check if action docks for anything - have decided probs don't need
-				if(nit->action.name == "dock"){
-					willDock[index] = true;
-				}
 				//get the only first non move or undock action
 				if(start_locations.size() <= mission_durations.size() && !(nit->action.name == "goto_waypoint" || nit->action.name == "undock" || nit->action.name == "localise")){
-					std::cout<<"action we are starting at: "<<nit->action.name<<std::endl;
 					//loop through parameters of that action
 					for(std::vector<diagnostic_msgs::KeyValue>::iterator i = nit->action.parameters.begin(); i != nit->action.parameters.end(); ++i){
 						if(i->key == "wp"){
@@ -133,9 +124,6 @@ namespace KCL_rosplan {
 					}
 				}
 			}
-
-			//increase index
-			index++;
 
 			//get the end points
 			end_points.push_back(getEndPoint(last_plan.nodes));
@@ -221,14 +209,6 @@ namespace KCL_rosplan {
 			updateSrv.request.knowledge.values.push_back(end_points[i]);
 			update_knowledge_client.call(updateSrv);
 		}
-		//checking all facts and current state of problem - just to error check
-		rosplan_knowledge_msgs::GetAttributeService currentAttribService;
-		current_knowledge_client.call(currentAttribService);
-		std::vector<rosplan_knowledge_msgs::KnowledgeItem> attribs = currentAttribService.response.attributes;
-		std::vector<rosplan_knowledge_msgs::KnowledgeItem>::iterator aitr = attribs.begin();
-		for( ; aitr != attribs.end(); ++aitr){
-			std::cout<<*aitr<<std::endl;
-		}
 	}
 
 	diagnostic_msgs::KeyValue RPStrategicControl::getEndPoint(std::vector<rosplan_dispatch_msgs::EsterelPlanNode> & nodes) const{
@@ -237,13 +217,45 @@ namespace KCL_rosplan {
 			if(!(nrit->action.name == "goto_waypoint" || nrit->action.name == "dock")){
 				for(std::vector<diagnostic_msgs::KeyValue>::iterator i = nrit->action.parameters.begin(); i != nrit->action.parameters.end(); ++i){
 					if(i->key == "wp"){
-						std::cout<<"value"<<i->value<<std::endl;
 						return *i;
 					}
 				}
 			}
 		}
 		return nodes[nodes.size() - 1].action.parameters[0];
+	}
+
+	//going to change when I have the updated edge durations
+	int RPStrategicControl::getMinTime(rosplan_dispatch_msgs::EsterelPlan& plan) const{
+		//create graph layout to help with the algorithm - max 10000 so that non connected edges wont be taken into account
+		std::vector<std::vector<int> > graph(plan.nodes.size(), std::vector<int>(plan.nodes.size(), 10000));
+		std::vector<std::vector<int> > newGraph(plan.nodes.size(), std::vector<int>(plan.nodes.size(), 1000));
+		//loop around all nodes
+		std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::iterator nit = plan.nodes.begin();
+		for(int i = 0; i < plan.nodes.size(); ++i){
+			rosplan_dispatch_msgs::EsterelPlanNode* nit = &plan.nodes[i];
+			//the distance from a vertex to itself is 0
+			graph[i][i] = 0;
+			//for each node loop around all incoming edges
+			std::vector<int>::iterator eit = nit->edges_in.begin();
+			for(; eit != nit->edges_in.end(); ++eit){
+				//get the incoming edge from the plan
+				rosplan_dispatch_msgs::EsterelPlanEdge tempEdge = plan.edges[*eit];
+				//use the edges source to get the node that the edge starts at - assuming edges can only come from one node
+				rosplan_dispatch_msgs::EsterelPlanNode tempNode = plan.nodes[tempEdge.source_ids[0]];
+				//the distance between the node the edge starts, at and the node we are looking at: is it's duration
+				graph[tempEdge.source_ids[0]][i] = tempNode.action.duration;
+			}
+		}
+		for(int k = 0; k < graph.size(); ++k){
+			for(int i = 0; i < graph.size(); ++i){
+				for(int j = 0; j < graph.size(); ++j){
+					if(graph[i][k] + graph[k][j] < newGraph[i][j]){
+						newGraph[i][j] = graph[i][k] + graph[k][j];
+					}
+				}
+			}
+		}
 	}
 
 } // close namespace

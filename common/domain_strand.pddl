@@ -46,10 +46,7 @@
 		(mission_duration ?m - mission)
 	)
 
-	;; Move to any waypoint, avoiding terrain - need to find a way to make this not execute at same time as complete_mission
-	;; only way I can think right now is have to actions - one that can be performed in complete_mission and another that
-	;; can be performed out of it - as if this can't execute at the same time as complete_mission then it can't be performed
-	;; in it's tac plans
+	;; Move to any waypoint, avoiding terrain
 	(:durative-action goto_waypoint
 		:parameters (?r - robot ?from ?to - waypoint)
 		:duration ( = ?duration 60)
@@ -64,26 +61,6 @@
 			(at end (robot_at ?r ?to))
 			)
 	)
-
-	;; THIS ALSO DOESN'T WORK BECAUSE CAN STILL USE GOTO_WAYPOINT AT SAME TIME OF COMPLETE_MISSION - NEED TO BE USING IT IN 
-	;; TACTIAL BUT NOT AT SAME TIME IN STRATEGIC
-
-	;;(:durative-action goto_waypoint_outside
-	;;	:parameters (?r - robot ?from ?to - waypoint)
-	;;	:duration ( = ?duration 60)
-	;;	:condition (and
-	;;		(at start (robot_at ?r ?from))
-	;;		(at start (localised ?r))
-	;;		(over all (undocked ?r))
-	;;		(at start (not_busy))
-	;;		)
-	;;	:effect (and
-	;;		(at start (not (not_busy)))
-	;;		(at start (not (robot_at ?r ?from)))
-	;;		(at end (robot_at ?r ?to))
-	;;		(at end (not_busy))
-	;;		)
-	;;)
 
 	;; Localise
 	(:durative-action localise
@@ -227,7 +204,6 @@
 			(at end (mission_complete ?m))
 			(at end (not_busy))
 			(at end (not (end_point ?m ?to)))
-			;;(at end (not (can_goto)))
 			)
 	)
 )
