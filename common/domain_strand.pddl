@@ -183,7 +183,6 @@
 			)
 	)
 
-	;;need to add (at end (robot_at ?r ?to)) effect and (at start (mission_active ?m)) precondition
 	(:durative-action complete_mission
 		:parameters (?r - robot ?m - mission ?from ?to - waypoint)
 		:duration ( = ?duration (mission_duration ?m))

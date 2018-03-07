@@ -63,13 +63,13 @@ The robot is able to complete only one mission at a time, enforced by the "not_b
 
 - *strategic/tactical planner interface*, *strategic/tactical problem generation*, *strategic/tactical plan parsing*, *strategic/tactical plan dispatch* These nodes produce a PDDL problem, pass it to a planner, parse the planner output, and dispatch the resulting plan, all as services.
 
-## Running the Exampe
+## Running the Example
 
 To run the example, open two terminals and source the workspace in both.
 
 In the first terminal terminal we launch everything using the command:
 ```
-roslaunch rosplan_interface_strategic strategic_tactical.launch`
+roslaunch rosplan_interface_strategic strategic_tactical.launch
 ```
 
 In the second terminal, run the three scripts.
