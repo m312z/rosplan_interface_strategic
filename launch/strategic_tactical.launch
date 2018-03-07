@@ -53,7 +53,7 @@
 		<arg name="planner_topic"        value="planner_output" />
 		<arg name="domain_path"          value="$(arg domain_strategic)" />
 		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_strategic.pddl" />
-		<arg name="data_path"            value="$(find rosplan_demos)/common/" />
+		<arg name="data_path"            value="$(find rosplan_demos)/common/strategic_" />
 		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 	</include>
 
@@ -65,7 +65,7 @@
 		<arg name="planner_topic"        value="planner_output" />
 		<arg name="domain_path"          value="$(arg domain_strategic)" />
 		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_tactical.pddl" />
-		<arg name="data_path"            value="$(find rosplan_demos)/common/" />
+		<arg name="data_path"            value="$(find rosplan_demos)/common/tactical_" />
 		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 	</include>
 

@@ -67,6 +67,13 @@ param="$param
   attribute_name: 'dock_at'
   values:
   - {key: 'wp', value: 'wp0'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'not_localised'
+  values:
+  - {key: 'r', value: 'kenny'}
   function_value: 0.0";
 
 rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 0
