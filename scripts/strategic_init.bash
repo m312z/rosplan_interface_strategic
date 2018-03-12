@@ -14,7 +14,7 @@ param="knowledge:
   instance_name: 'kenny'
   attribute_name: ''
   function_value: 0.0";
-for i in $(seq 0 4 )
+for i in $(seq 0 3 )
 do
 param="$param
 - knowledge_type: 0
@@ -79,10 +79,10 @@ param="$param
 rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 0
 $param"
 
-for i in $(seq 0 2 )
+for i in $(seq 1 3 )
 do
-param="update_type: 2
-duration: $((60+$i*120))
+param="update_type: 0
+duration: $(($i*600))
 knowledge:
 - knowledge_type: 1
   instance_type: ''
@@ -90,15 +90,15 @@ knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: '${mats[4]}'}
-  - {key: 'wp', value: 'wp4'}
+  - {key: 'wp', value: 'wp0'}
   function_value: 0.0";
 rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
 done;
 
 for i in $(seq 1 3 )
 do
-param="update_type: 0
-duration: $(($i*120))
+param="update_type: 2
+duration: $((60+$i*600))
 knowledge:
 - knowledge_type: 1
   instance_type: ''
@@ -106,7 +106,7 @@ knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: '${mats[4]}'}
-  - {key: 'wp', value: 'wp4'}
+  - {key: 'wp', value: 'wp0'}
   function_value: 0.0";
 rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
 done;
