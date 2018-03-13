@@ -1,6 +1,6 @@
 (define (domain turtlebot)
 
-	(:requirements :strips :typing :numeric-fluents :durative-actions :conditional-effects :equality)
+	(:requirements :strips :typing :numeric-fluents :durative-actions :conditional-effects :equality :timed-initial-literals)
 
 	(:types
 		waypoint 
