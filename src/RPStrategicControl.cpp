@@ -75,6 +75,17 @@ namespace KCL_rosplan {
 		updateSrv.request.knowledge.values.clear();
 		update_knowledge_client.call(updateSrv);
 
+		//add can_tac_goto fact
+		updateSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::ADD_KNOWLEDGE;
+		updateSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
+		updateSrv.request.knowledge.instance_type = "";
+		updateSrv.request.knowledge.instance_name = "";
+		updateSrv.request.knowledge.function_value = 0;
+		updateSrv.request.knowledge.attribute_name = "can_tac_goto";
+		updateSrv.request.knowledge.values.clear();
+		update_knowledge_client.call(updateSrv);
+
+
 		// compute mission durations
 		std::stringstream ss;
 		std::vector<double> mission_durations;
@@ -118,6 +129,7 @@ namespace KCL_rosplan {
 					//loop through parameters of that action
 					for(std::vector<diagnostic_msgs::KeyValue>::iterator i = nit->action.parameters.begin(); i != nit->action.parameters.end(); ++i){
 						if(i->key == "wp"){
+							std::cout<<"for mission "<<ss.str()<<": "<<i->value<<std::endl;
 							//first one that is a waypoint parameter is where the mission has to start (at_mission)
 							start_locations.push_back(*i);
 						}
@@ -139,6 +151,23 @@ namespace KCL_rosplan {
 			updateSrv.request.knowledge.values.clear();
 			update_knowledge_client.call(updateSrv);
 		}
+
+		//remove can_tac_goto fact
+		updateSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::REMOVE_KNOWLEDGE;
+		updateSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
+		updateSrv.request.knowledge.attribute_name = "can_tac_goto";
+		updateSrv.request.knowledge.values.clear();
+		update_knowledge_client.call(updateSrv);
+
+		//add can_strat_goto fact
+		updateSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::ADD_KNOWLEDGE;
+		updateSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
+		updateSrv.request.knowledge.instance_type = "";
+		updateSrv.request.knowledge.instance_name = "";
+		updateSrv.request.knowledge.function_value = 0;
+		updateSrv.request.knowledge.attribute_name = "can_strat_goto";
+		updateSrv.request.knowledge.values.clear();
+		update_knowledge_client.call(updateSrv);
 
 		// add new mission goals
 		ROS_INFO("KCL: (%s) Adding new mission goals.", ros::this_node::getName().c_str());
@@ -209,6 +238,15 @@ namespace KCL_rosplan {
 			updateSrv.request.knowledge.values.push_back(end_points[i]);
 			update_knowledge_client.call(updateSrv);
 		}
+		// //add can_tac_goto fact
+		// updateSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::ADD_KNOWLEDGE;
+		// updateSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
+		// updateSrv.request.knowledge.instance_type = "";
+		// updateSrv.request.knowledge.instance_name = "";
+		// updateSrv.request.knowledge.function_value = 0;
+		// updateSrv.request.knowledge.attribute_name = "can_tac_goto";
+		// updateSrv.request.knowledge.values.clear();
+		// update_knowledge_client.call(updateSrv);
 	}
 
 	diagnostic_msgs::KeyValue RPStrategicControl::getEndPoint(std::vector<rosplan_dispatch_msgs::EsterelPlanNode> & nodes) const{

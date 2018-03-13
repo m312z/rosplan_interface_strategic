@@ -24,6 +24,8 @@
 		(robot_at ?r - robot ?wp - waypoint)
 		(localised ?r - robot)
 		(not_localised ?r - robot)
+		(can_tac_goto)
+		(can_strat_goto)
 
 		(undocked ?r - robot)
 		(docked ?r - robot)
@@ -31,7 +33,6 @@
 
 		(material_at ?m - material ?wp - waypoint)
 		(complete ?i - item ?wp - waypoint)
-		(can_goto)
 
 		(mission_complete ?m - mission)
 		(not_busy)
@@ -46,15 +47,36 @@
 		(mission_duration ?m - mission)
 	)
 
-	;; Move to any waypoint, avoiding terrain
-	(:durative-action goto_waypoint
+	;; Move to any waypoint, avoiding terrain - need to find a way to make this not execute at same time as complete_mission
+	;; only way I can think right now is have to actions - one that can be performed in complete_mission and another that
+	;; can be performed out of it - as if this can't execute at the same time as complete_mission then it can't be performed
+	;; in it's tac plans
+	(:durative-action tactical_goto
 		:parameters (?r - robot ?from ?to - waypoint)
 		:duration ( = ?duration 60)
 		:condition (and
 			(at start (robot_at ?r ?from))
 			(at start (localised ?r))
 			(over all (undocked ?r))
-			;;(over all (can_goto))
+			(over all (can_tac_goto))
+			)
+		:effect (and
+			(at start (not (robot_at ?r ?from)))
+			(at end (robot_at ?r ?to))
+			)
+	)
+
+	;; THIS ALSO DOESN'T WORK BECAUSE CAN STILL USE GOTO_WAYPOINT AT SAME TIME OF COMPLETE_MISSION - NEED TO BE USING IT IN 
+	;; TACTIAL BUT NOT AT SAME TIME IN STRATEGIC
+	(:durative-action strategic_goto
+		:parameters (?r - robot ?from ?to - waypoint)
+		:duration ( = ?duration 60)
+		:condition (and
+			(over all (not_busy))
+			(at start (robot_at ?r ?from))
+			(at start (localised ?r))
+			(over all (undocked ?r))
+			(over all (can_strat_goto))
 			)
 		:effect (and
 			(at start (not (robot_at ?r ?from)))
@@ -183,6 +205,7 @@
 			)
 	)
 
+	;;need to add (at end (robot_at ?r ?to)) effect and (at start (mission_active ?m)) precondition
 	(:durative-action complete_mission
 		:parameters (?r - robot ?m - mission ?from ?to - waypoint)
 		:duration ( = ?duration (mission_duration ?m))
@@ -195,7 +218,6 @@
 			(at end (end_point ?m ?to))
 			)
 		:effect (and
-			;;(at start (can_goto))
 			(at start (not (not_busy)))
 			(at end (not (robot_at ?r ?from)))
 			(at end (robot_at ?r ?to))
