@@ -552,7 +552,7 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp39'}
+  - {key: 'wp', value: 'wp56'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -560,15 +560,143 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp93'}
+  - {key: 'wp', value: 'wp57'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
   instance_name: ''
   attribute_name: 'material_at'
   values:
-  - {key: 'm', value: 'white'}
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp47'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp22'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp75'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp64'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp0'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp82'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
   - {key: 'wp', value: 'wp32'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp92'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp99'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp69'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp59'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp76'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp10'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp52'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp52'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -584,31 +712,7 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'blue'}
-  - {key: 'wp', value: 'wp96'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'black'}
-  - {key: 'wp', value: 'wp48'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp10'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'white'}
-  - {key: 'wp', value: 'wp90'}
+  - {key: 'wp', value: 'wp36'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -616,95 +720,7 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'blue'}
-  - {key: 'wp', value: 'wp27'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp15'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp22'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp32'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'white'}
-  - {key: 'wp', value: 'wp37'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp12'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp65'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'white'}
-  - {key: 'wp', value: 'wp32'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp72'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp84'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp9'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp81'}
+  - {key: 'wp', value: 'wp96'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -719,8 +735,8 @@ param="knowledge:
   instance_name: ''
   attribute_name: 'material_at'
   values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp14'}
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp15'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -728,6 +744,86 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp47'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp40'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp16'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp65'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp94'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp68'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp70'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp8'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp76'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
   - {key: 'wp', value: 'wp76'}
   function_value: 0.0
 - knowledge_type: 1
@@ -736,7 +832,7 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'white'}
-  - {key: 'wp', value: 'wp56'}
+  - {key: 'wp', value: 'wp82'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -744,62 +840,6 @@ param="knowledge:
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp11'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'green'}
-  - {key: 'wp', value: 'wp32'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp2'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'blue'}
-  - {key: 'wp', value: 'wp39'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'blue'}
-  - {key: 'wp', value: 'wp81'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp20'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'black'}
-  - {key: 'wp', value: 'wp30'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: 'black'}
   - {key: 'wp', value: 'wp45'}
   function_value: 0.0
 - knowledge_type: 1
@@ -807,16 +847,48 @@ param="knowledge:
   instance_name: ''
   attribute_name: 'material_at'
   values:
-  - {key: 'm', value: 'white'}
-  - {key: 'wp', value: 'wp50'}
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp86'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
   instance_name: ''
   attribute_name: 'material_at'
   values:
-  - {key: 'm', value: 'blue'}
-  - {key: 'wp', value: 'wp83'}
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp96'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp19'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp97'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp67'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp96'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -831,11 +903,269 @@ param="knowledge:
   instance_name: ''
   attribute_name: 'material_at'
   values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp68'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
   - {key: 'm', value: 'red'}
-  - {key: 'wp', value: 'wp4'}
+  - {key: 'wp', value: 'wp63'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp30'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp36'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp41'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp24'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp40'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp3'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp3'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp20'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp11'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp57'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp8'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp19'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp15'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp85'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp34'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp94'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp97'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp40'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp60'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp93'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'not_busy'
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'robot_at'
+  values:
+  - {key: 'r', value: 'kenny'}
+  - {key: 'wp', value: 'wp22'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'docked'
+  values:
+  - {key: 'r', value: 'kenny'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'dock_at'
+  values:
+  - {key: 'wp', value: 'wp6'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'not_localised'
+  values:
+  - {key: 'r', value: 'kenny'}
   function_value: 0.0";
-rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
-done;
 
 rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 0
 $param"
+
+param="update_type: 2
+duration: 982
+knowledge:
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0";
+
+rosservice call /kcl_rosplan/update_knowledge_base_array "$param";param="update_type: 2
+duration: 305
+knowledge:
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp96'}
+  function_value: 0.0";
+
+rosservice call /kcl_rosplan/update_knowledge_base_array "$param";

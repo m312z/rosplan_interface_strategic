@@ -109,14 +109,6 @@ param="$param
   values:
   - {key: 'i', value: 'i0'}
   - {key: 'm', value: 'black'}
-  function_value: 1.0
-- knowledge_type: 2
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'requires'
-  values:
-  - {key: 'i', value: 'i0'}
-  - {key: 'm', value: 'blue'}
   function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
@@ -124,6 +116,14 @@ param="$param
   attribute_name: 'requires'
   values:
   - {key: 'i', value: 'i0'}
+  - {key: 'm', value: 'blue'}
+  function_value: 1.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'requires'
+  values:
+  - {key: 'i', value: 'i0'}
   - {key: 'm', value: 'green'}
   function_value: 0.0
 - knowledge_type: 2
@@ -181,7 +181,7 @@ param="$param
   values:
   - {key: 'i', value: 'i1'}
   - {key: 'm', value: 'white'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -229,14 +229,6 @@ param="$param
   values:
   - {key: 'i', value: 'i3'}
   - {key: 'm', value: 'black'}
-  function_value: 0.0
-- knowledge_type: 2
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'requires'
-  values:
-  - {key: 'i', value: 'i3'}
-  - {key: 'm', value: 'blue'}
   function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
@@ -244,6 +236,14 @@ param="$param
   attribute_name: 'requires'
   values:
   - {key: 'i', value: 'i3'}
+  - {key: 'm', value: 'blue'}
+  function_value: 1.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'requires'
+  values:
+  - {key: 'i', value: 'i3'}
   - {key: 'm', value: 'green'}
   function_value: 0.0
 - knowledge_type: 2
@@ -253,7 +253,7 @@ param="$param
   values:
   - {key: 'i', value: 'i3'}
   - {key: 'm', value: 'red'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -261,7 +261,7 @@ param="$param
   values:
   - {key: 'i', value: 'i3'}
   - {key: 'm', value: 'white'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -293,7 +293,7 @@ param="$param
   values:
   - {key: 'i', value: 'i4'}
   - {key: 'm', value: 'red'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -309,7 +309,7 @@ param="$param
   values:
   - {key: 'i', value: 'i5'}
   - {key: 'm', value: 'black'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -317,7 +317,7 @@ param="$param
   values:
   - {key: 'i', value: 'i5'}
   - {key: 'm', value: 'blue'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -349,7 +349,7 @@ param="$param
   values:
   - {key: 'i', value: 'i6'}
   - {key: 'm', value: 'black'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -373,7 +373,7 @@ param="$param
   values:
   - {key: 'i', value: 'i6'}
   - {key: 'm', value: 'red'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -397,7 +397,7 @@ param="$param
   values:
   - {key: 'i', value: 'i7'}
   - {key: 'm', value: 'blue'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -421,7 +421,7 @@ param="$param
   values:
   - {key: 'i', value: 'i7'}
   - {key: 'm', value: 'white'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -429,7 +429,7 @@ param="$param
   values:
   - {key: 'i', value: 'i8'}
   - {key: 'm', value: 'black'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -453,7 +453,7 @@ param="$param
   values:
   - {key: 'i', value: 'i8'}
   - {key: 'm', value: 'red'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -469,7 +469,7 @@ param="$param
   values:
   - {key: 'i', value: 'i9'}
   - {key: 'm', value: 'black'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -501,7 +501,7 @@ param="$param
   values:
   - {key: 'i', value: 'i9'}
   - {key: 'm', value: 'white'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -573,7 +573,7 @@ param="$param
   values:
   - {key: 'i', value: 'i11'}
   - {key: 'm', value: 'red'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -581,7 +581,7 @@ param="$param
   values:
   - {key: 'i', value: 'i11'}
   - {key: 'm', value: 'white'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -637,14 +637,6 @@ param="$param
   values:
   - {key: 'i', value: 'i13'}
   - {key: 'm', value: 'blue'}
-  function_value: 1.0
-- knowledge_type: 2
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'requires'
-  values:
-  - {key: 'i', value: 'i13'}
-  - {key: 'm', value: 'green'}
   function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
@@ -652,6 +644,14 @@ param="$param
   attribute_name: 'requires'
   values:
   - {key: 'i', value: 'i13'}
+  - {key: 'm', value: 'green'}
+  function_value: 0.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'requires'
+  values:
+  - {key: 'i', value: 'i13'}
   - {key: 'm', value: 'red'}
   function_value: 1.0
 - knowledge_type: 2
@@ -669,7 +669,7 @@ param="$param
   values:
   - {key: 'i', value: 'i14'}
   - {key: 'm', value: 'black'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -677,7 +677,7 @@ param="$param
   values:
   - {key: 'i', value: 'i14'}
   - {key: 'm', value: 'blue'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -701,7 +701,7 @@ param="$param
   values:
   - {key: 'i', value: 'i14'}
   - {key: 'm', value: 'white'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -749,7 +749,7 @@ param="$param
   values:
   - {key: 'i', value: 'i16'}
   - {key: 'm', value: 'black'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -781,7 +781,7 @@ param="$param
   values:
   - {key: 'i', value: 'i16'}
   - {key: 'm', value: 'white'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -797,7 +797,7 @@ param="$param
   values:
   - {key: 'i', value: 'i17'}
   - {key: 'm', value: 'blue'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -829,7 +829,7 @@ param="$param
   values:
   - {key: 'i', value: 'i18'}
   - {key: 'm', value: 'black'}
-  function_value: 1.0
+  function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -837,7 +837,7 @@ param="$param
   values:
   - {key: 'i', value: 'i18'}
   - {key: 'm', value: 'blue'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -853,7 +853,7 @@ param="$param
   values:
   - {key: 'i', value: 'i18'}
   - {key: 'm', value: 'red'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -861,7 +861,7 @@ param="$param
   values:
   - {key: 'i', value: 'i18'}
   - {key: 'm', value: 'white'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -893,7 +893,7 @@ param="$param
   values:
   - {key: 'i', value: 'i19'}
   - {key: 'm', value: 'red'}
-  function_value: 0.0
+  function_value: 1.0
 - knowledge_type: 2
   instance_type: ''
   instance_name: ''
@@ -912,22 +912,6 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i0'}
-  - {key: 'wp', value: 'wp93'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i1'}
-  - {key: 'wp', value: 'wp58'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i2'}
   - {key: 'wp', value: 'wp23'}
   function_value: 0.0
 - knowledge_type: 1
@@ -935,8 +919,24 @@ param2="knowledge:
   instance_name: ''
   attribute_name: 'complete'
   values:
+  - {key: 'i', value: 'i1'}
+  - {key: 'wp', value: 'wp74'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i2'}
+  - {key: 'wp', value: 'wp73'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
   - {key: 'i', value: 'i3'}
-  - {key: 'wp', value: 'wp60'}
+  - {key: 'wp', value: 'wp81'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -944,7 +944,7 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i4'}
-  - {key: 'wp', value: 'wp4'}
+  - {key: 'wp', value: 'wp39'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -952,7 +952,7 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i5'}
-  - {key: 'wp', value: 'wp93'}
+  - {key: 'wp', value: 'wp31'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -960,7 +960,7 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i6'}
-  - {key: 'wp', value: 'wp78'}
+  - {key: 'wp', value: 'wp26'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -968,7 +968,7 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i7'}
-  - {key: 'wp', value: 'wp84'}
+  - {key: 'wp', value: 'wp89'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -976,7 +976,7 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i8'}
-  - {key: 'wp', value: 'wp30'}
+  - {key: 'wp', value: 'wp66'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -984,70 +984,6 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i9'}
-  - {key: 'wp', value: 'wp48'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i10'}
-  - {key: 'wp', value: 'wp77'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i11'}
-  - {key: 'wp', value: 'wp82'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i12'}
-  - {key: 'wp', value: 'wp38'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i13'}
-  - {key: 'wp', value: 'wp37'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i14'}
-  - {key: 'wp', value: 'wp34'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i15'}
-  - {key: 'wp', value: 'wp7'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i16'}
-  - {key: 'wp', value: 'wp18'}
-  function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'complete'
-  values:
-  - {key: 'i', value: 'i17'}
   - {key: 'wp', value: 'wp24'}
   function_value: 0.0
 - knowledge_type: 1
@@ -1055,8 +991,72 @@ param2="knowledge:
   instance_name: ''
   attribute_name: 'complete'
   values:
+  - {key: 'i', value: 'i10'}
+  - {key: 'wp', value: 'wp89'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i11'}
+  - {key: 'wp', value: 'wp84'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i12'}
+  - {key: 'wp', value: 'wp60'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i13'}
+  - {key: 'wp', value: 'wp44'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i14'}
+  - {key: 'wp', value: 'wp75'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i15'}
+  - {key: 'wp', value: 'wp2'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i16'}
+  - {key: 'wp', value: 'wp88'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
+  - {key: 'i', value: 'i17'}
+  - {key: 'wp', value: 'wp14'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'complete'
+  values:
   - {key: 'i', value: 'i18'}
-  - {key: 'wp', value: 'wp83'}
+  - {key: 'wp', value: 'wp51'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -1064,7 +1064,7 @@ param2="knowledge:
   attribute_name: 'complete'
   values:
   - {key: 'i', value: 'i19'}
-  - {key: 'wp', value: 'wp33'}
+  - {key: 'wp', value: 'wp63'}
   function_value: 0.0";
 rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 1
 $param2"

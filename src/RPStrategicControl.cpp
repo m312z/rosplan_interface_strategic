@@ -1,6 +1,10 @@
 #include "rosplan_interface_strategic/RPStrategicControl.h"
 #include <iostream>
 
+//EsterelPlanEdge.h
+//EsterelPlanNode.h
+//EsterelPlanDispatcher.h
+
 /* The implementation of RPStrategicControl.h */
 namespace KCL_rosplan {
 
@@ -85,6 +89,42 @@ namespace KCL_rosplan {
 		updateSrv.request.knowledge.values.clear();
 		update_knowledge_client.call(updateSrv);
 
+		//find and save and remove TIL's
+		rosplan_knowledge_msgs::GetAttributeService currentAttribService;
+		current_knowledge_client.call(currentAttribService);
+		std::vector<rosplan_knowledge_msgs::KnowledgeItem> knowledgeBase(currentAttribService.response.attributes);
+		std::vector<ros::Time> initialTimes(currentAttribService.response.initial_time);
+		std::vector<std::pair <rosplan_knowledge_msgs::KnowledgeItem, ros::Time> > tils;
+		//TEST
+		// for(int i = 0; i < knowledgeBase.size(); ++i){
+		// 	if(knowledgeBase[i].attribute_name == "material_at" && knowledgeBase[i].is_negative == 1){
+		// 		std::cout<<knowledgeBase[i]<<std::endl;
+		// 		//std::cout<<initialTimes[i]<<std::endl;
+		// 	}
+		// }
+		//SAVING AND REMOVING
+		for(int i = 0; i < knowledgeBase.size(); ++i){
+			if(knowledgeBase[i].attribute_name == "material_at" && initialTimes[i] > ros::Time::now()){
+				tils.push_back(std::make_pair(knowledgeBase[i], initialTimes[i]));
+				// std::cout<<tils[tils.size() - 1].first.attribute_name<<std::endl;
+				// updateSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::REMOVE_KNOWLEDGE;
+				// updateSrv.request.knowledge = knowledgeBase[i];
+				// updateSrv.request.duration = initialTimes[i].toSec();
+				// std::cout<<initialTimes[i].toSec()<<std::endl;
+				// update_knowledge_client.call(updateSrv);
+			}
+		}
+		//TEST
+		// std::cout<<"THIRD HERE!!!"<<std::endl;
+		// rosplan_knowledge_msgs::GetAttributeService newAttribService;
+		// current_knowledge_client.call(newAttribService);
+		// std::vector<rosplan_knowledge_msgs::KnowledgeItem> newKnowledgeBase = newAttribService.response.attributes;
+		// std::vector<rosplan_knowledge_msgs::KnowledgeItem>::iterator nkitr = newKnowledgeBase.begin();
+		// for(; nkitr != newKnowledgeBase.end(); ++nkitr){
+		// 	if(nkitr->attribute_name == "material_at" && nkitr->is_negative == 1){
+		// 		std::cout<<*nkitr<<std::endl;
+		// 	}
+		// }
 
 		// compute mission durations
 		std::stringstream ss;
@@ -93,6 +133,10 @@ namespace KCL_rosplan {
 		std::vector<diagnostic_msgs::KeyValue> start_locations;
 		//the location the robot will be after the mission has been
 		std::vector<diagnostic_msgs::KeyValue> end_points;
+		//the lower bound times
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > lower_bounds;
+		//the upper bound times
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > upper_bounds;
 		std::vector<rosplan_knowledge_msgs::KnowledgeItem>::iterator git = goals.begin();
 		for(; git!=goals.end(); git++) {
 			ss.str("");
@@ -120,6 +164,7 @@ namespace KCL_rosplan {
 			// compute plan duration
 			double max_time = 0;
 			std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::iterator nit = last_plan.nodes.begin();
+			std::cout<<last_plan<<std::endl;
 			for(; nit != last_plan.nodes.end(); nit++) {
 				//problem that this will overshoot time of plan now - however, could be fine as we should do upper estimate
 				double time = nit->action.dispatch_time + nit->action.duration;
@@ -136,7 +181,10 @@ namespace KCL_rosplan {
 					}
 				}
 			}
-
+			//get the lower bound times
+			lower_bounds = getLowerBoundTimes(last_plan);
+			//get the upper bound times
+			upper_bounds = getUpperBoundTimes(last_plan);
 			//get the end points
 			end_points.push_back(getEndPoint(last_plan.nodes));
 
@@ -238,15 +286,14 @@ namespace KCL_rosplan {
 			updateSrv.request.knowledge.values.push_back(end_points[i]);
 			update_knowledge_client.call(updateSrv);
 		}
-		// //add can_tac_goto fact
-		// updateSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::ADD_KNOWLEDGE;
-		// updateSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
-		// updateSrv.request.knowledge.instance_type = "";
-		// updateSrv.request.knowledge.instance_name = "";
-		// updateSrv.request.knowledge.function_value = 0;
-		// updateSrv.request.knowledge.attribute_name = "can_tac_goto";
-		// updateSrv.request.knowledge.values.clear();
-		// update_knowledge_client.call(updateSrv);
+		//checking all facts and current state of problem - just to error check
+		// rosplan_knowledge_msgs::GetAttributeService currentAttribService;
+		// current_knowledge_client.call(currentAttribService);
+		// std::vector<rosplan_knowledge_msgs::KnowledgeItem> attribs = currentAttribService.response.attributes;
+		// std::vector<rosplan_knowledge_msgs::KnowledgeItem>::iterator aitr = attribs.begin();
+		// for( ; aitr != attribs.end(); ++aitr){
+		// 	std::cout<<*aitr<<std::endl;
+		// }
 	}
 
 	diagnostic_msgs::KeyValue RPStrategicControl::getEndPoint(std::vector<rosplan_dispatch_msgs::EsterelPlanNode> & nodes) const{
@@ -263,37 +310,72 @@ namespace KCL_rosplan {
 		return nodes[nodes.size() - 1].action.parameters[0];
 	}
 
-	//going to change when I have the updated edge durations
-	int RPStrategicControl::getMinTime(rosplan_dispatch_msgs::EsterelPlan& plan) const{
-		//create graph layout to help with the algorithm - max 10000 so that non connected edges wont be taken into account
-		std::vector<std::vector<int> > graph(plan.nodes.size(), std::vector<int>(plan.nodes.size(), 10000));
-		std::vector<std::vector<int> > newGraph(plan.nodes.size(), std::vector<int>(plan.nodes.size(), 1000));
-		//loop around all nodes
-		std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::iterator nit = plan.nodes.begin();
-		for(int i = 0; i < plan.nodes.size(); ++i){
-			rosplan_dispatch_msgs::EsterelPlanNode* nit = &plan.nodes[i];
-			//the distance from a vertex to itself is 0
-			graph[i][i] = 0;
-			//for each node loop around all incoming edges
-			std::vector<int>::iterator eit = nit->edges_in.begin();
-			for(; eit != nit->edges_in.end(); ++eit){
-				//get the incoming edge from the plan
-				rosplan_dispatch_msgs::EsterelPlanEdge tempEdge = plan.edges[*eit];
-				//use the edges source to get the node that the edge starts at - assuming edges can only come from one node
-				rosplan_dispatch_msgs::EsterelPlanNode tempNode = plan.nodes[tempEdge.source_ids[0]];
-				//the distance between the node the edge starts, at and the node we are looking at: is it's duration
-				graph[tempEdge.source_ids[0]][i] = tempNode.action.duration;
-			}
+	//find the lower bound times for all actions to be executed
+	std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > RPStrategicControl::getLowerBoundTimes(rosplan_dispatch_msgs::EsterelPlan& plan) const{
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > newNodes;
+		std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::iterator pnit = plan.nodes.begin();
+		newNodes.push_back(std::make_pair(*pnit, 0));
+		++pnit;
+		for(; pnit != plan.nodes.end(); ++pnit){
+			newNodes.push_back(std::make_pair(*pnit, 100000));
 		}
-		for(int k = 0; k < graph.size(); ++k){
-			for(int i = 0; i < graph.size(); ++i){
-				for(int j = 0; j < graph.size(); ++j){
-					if(graph[i][k] + graph[k][j] < newGraph[i][j]){
-						newGraph[i][j] = graph[i][k] + graph[k][j];
-					}
+
+		//loop around all nodes
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> >::iterator nit = newNodes.begin();
+		for(; nit != newNodes.end(); ++nit){
+			//for each node loop around all outgoing edges
+			std::vector<int>::iterator eit = nit->first.edges_out.begin();
+			for(; eit != nit->first.edges_out.end(); ++eit){
+				//get the outgoing edge from the plan
+				rosplan_dispatch_msgs::EsterelPlanEdge tempEdge = plan.edges[*eit];
+				//use the edges sink to get the node that the edge is going to - assuming each edge can only go to one node
+				rosplan_dispatch_msgs::EsterelPlanNode tempNode = plan.nodes[tempEdge.sink_ids[0]];
+				//if the distance to the new node is greater than the distance from the old node + negative edge weight
+				if(newNodes[tempNode.node_id].second > nit->second - tempEdge.duration_lower_bound){
+					//set new distance to old distance + negative edge weight
+					newNodes[tempNode.node_id].second = nit->second - tempEdge.duration_lower_bound;
 				}
 			}
 		}
+		// std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> >::iterator nnit = newNodes.begin();
+		// int i = 0;
+		// for(; nnit != newNodes.end(); ++nnit){
+		// 	std::cout<<"\n"<<std::endl;
+		// 	std::cout<<"Node "<<i<<":"<<std::endl;
+		// 	std::cout<<nnit->first<<std::endl;
+		// 	std::cout<<"duration: "<<nnit->second<<std::endl;
+		// }
+		return newNodes;
+	}
+
+	//find the upper bound times for all actions to be executed
+	std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > RPStrategicControl::getUpperBoundTimes(rosplan_dispatch_msgs::EsterelPlan& plan) const{
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > newNodes;
+		std::vector<rosplan_dispatch_msgs::EsterelPlanNode>::iterator pnit = plan.nodes.begin();
+		newNodes.push_back(std::make_pair(*pnit, 0));
+		++pnit;
+		for(; pnit != plan.nodes.end(); ++pnit){
+			newNodes.push_back(std::make_pair(*pnit, 100000));
+		}
+
+		//loop around all nodes
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> >::iterator nit = newNodes.begin();
+		for(; nit != newNodes.end(); ++nit){
+			//for each node loop around all outgoing edges
+			std::vector<int>::iterator eit = nit->first.edges_out.begin();
+			for(; eit != nit->first.edges_out.end(); ++eit){
+				//get the outgoing edge from the plan
+				rosplan_dispatch_msgs::EsterelPlanEdge tempEdge = plan.edges[*eit];
+				//use the edges sink to get the node that the edge is going to - assuming each edge can only go to one node
+				rosplan_dispatch_msgs::EsterelPlanNode tempNode = plan.nodes[tempEdge.sink_ids[0]];
+				//if the distance to the new node is greater than the distance from the old node + negative edge weight
+				if(newNodes[tempNode.node_id].second > nit->second - tempEdge.duration_upper_bound){
+					//set new distance to old distance + negative edge weight
+					newNodes[tempNode.node_id].second = nit->second - tempEdge.duration_upper_bound;
+				}
+			}
+		}
+		return newNodes;
 	}
 
 } // close namespace

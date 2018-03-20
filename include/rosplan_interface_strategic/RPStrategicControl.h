@@ -6,6 +6,7 @@
 #include "rosplan_knowledge_msgs/KnowledgeItem.h"
 #include "rosplan_knowledge_msgs/KnowledgeUpdateService.h"
 #include "rosplan_knowledge_msgs/GetAttributeService.h"
+#include "rosplan_knowledge_msgs/GetDomainPredicateDetailsService.h"
 #include "rosplan_dispatch_msgs/EsterelPlan.h"
 #include "rosplan_dispatch_msgs/ActionDispatch.h"
 
@@ -44,7 +45,8 @@ namespace KCL_rosplan {
 		rosplan_dispatch_msgs::EsterelPlan last_plan;
 		bool new_plan_recieved;
 		diagnostic_msgs::KeyValue getEndPoint(std::vector<rosplan_dispatch_msgs::EsterelPlanNode> & node) const;
-		int getMinTime(rosplan_dispatch_msgs::EsterelPlan& plan) const;
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > getLowerBoundTimes(rosplan_dispatch_msgs::EsterelPlan& plan) const;
+		std::vector< std::pair<rosplan_dispatch_msgs::EsterelPlanNode, double> > getUpperBoundTimes(rosplan_dispatch_msgs::EsterelPlan& plan) const;
 
 	public:
 
