@@ -1,34 +1,510 @@
 #!/bin/bash
 
-mats=(
-	'black'
-	'blue'
-	'green'
-	'white'
-	'red'
-   )
-
 param="knowledge:
 - knowledge_type: 0
   instance_type: 'robot'
   instance_name: 'kenny'
   attribute_name: ''
-  function_value: 0.0";
-for i in $(seq 0 3 )
-do
-param="$param
+  function_value: 0.0
 - knowledge_type: 0
   instance_type: 'waypoint'
-  instance_name: 'wp$i'
+  instance_name: 'wp0'
   attribute_name: ''
   function_value: 0.0
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: '${mats[$i]}'}
-  - {key: 'wp', value: 'wp$i'}
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp1'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp2'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp3'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp4'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp5'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp6'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp7'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp8'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp9'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp10'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp11'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp12'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp13'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp14'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp15'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp16'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp17'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp18'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp19'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp20'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp21'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp22'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp23'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp24'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp25'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp26'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp27'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp28'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp29'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp30'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp31'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp32'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp33'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp34'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp35'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp36'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp37'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp38'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp39'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp40'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp41'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp42'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp43'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp44'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp45'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp46'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp47'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp48'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp49'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp50'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp51'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp52'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp53'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp54'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp55'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp56'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp57'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp58'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp59'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp60'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp61'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp62'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp63'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp64'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp65'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp66'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp67'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp68'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp69'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp70'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp71'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp72'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp73'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp74'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp75'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp76'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp77'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp78'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp79'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp80'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp81'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp82'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp83'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp84'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp85'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp86'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp87'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp88'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp89'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp90'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp91'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp92'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp93'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp94'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp95'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp96'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp97'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp98'
+  attribute_name: ''
+  function_value: 0.0
+- knowledge_type: 0
+  instance_type: 'waypoint'
+  instance_name: 'wp99'
+  attribute_name: ''
   function_value: 0.0
 - knowledge_type: 2
   instance_type: ''
@@ -36,11 +512,600 @@ param="$param
   attribute_name: 'carrying'
   values:
   - {key: 'r', value: 'kenny'}
-  - {key: 'm', value: '${mats[$i]}'}
-  function_value: 0.0";
-done;
-
-param="$param
+  - {key: 'm', value: 'black'}
+  function_value: 0.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'carrying'
+  values:
+  - {key: 'r', value: 'kenny'}
+  - {key: 'm', value: 'blue'}
+  function_value: 0.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'carrying'
+  values:
+  - {key: 'r', value: 'kenny'}
+  - {key: 'm', value: 'green'}
+  function_value: 0.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'carrying'
+  values:
+  - {key: 'r', value: 'kenny'}
+  - {key: 'm', value: 'red'}
+  function_value: 0.0
+- knowledge_type: 2
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'carrying'
+  values:
+  - {key: 'r', value: 'kenny'}
+  - {key: 'm', value: 'white'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp56'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp57'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp47'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp22'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp75'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp64'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp0'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp82'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp32'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp92'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp99'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp69'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp59'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp76'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp10'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp52'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp52'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp88'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp36'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp96'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp66'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp15'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp47'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp40'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp16'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp65'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp94'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp68'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp70'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp8'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp76'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp76'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp82'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp45'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp86'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp96'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp19'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp97'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp67'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp96'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp25'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp68'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp63'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp30'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp36'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp41'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp24'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp40'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp3'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp3'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp20'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'green'}
+  - {key: 'wp', value: 'wp11'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp57'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp8'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp19'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp15'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp85'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp34'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp7'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp94'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp97'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp40'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'red'}
+  - {key: 'wp', value: 'wp1'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp60'}
+  function_value: 0.0
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'black'}
+  - {key: 'wp', value: 'wp93'}
+  function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
   instance_name: ''
@@ -52,7 +1117,7 @@ param="$param
   attribute_name: 'robot_at'
   values:
   - {key: 'r', value: 'kenny'}
-  - {key: 'wp', value: 'wp0'}
+  - {key: 'wp', value: 'wp22'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -66,7 +1131,7 @@ param="$param
   instance_name: ''
   attribute_name: 'dock_at'
   values:
-  - {key: 'wp', value: 'wp0'}
+  - {key: 'wp', value: 'wp6'}
   function_value: 0.0
 - knowledge_type: 1
   instance_type: ''
@@ -79,34 +1144,28 @@ param="$param
 rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 0
 $param"
 
-for i in $(seq 1 3 )
-do
-param="update_type: 0
-duration: $(($i*600))
-knowledge:
-- knowledge_type: 1
-  instance_type: ''
-  instance_name: ''
-  attribute_name: 'material_at'
-  values:
-  - {key: 'm', value: '${mats[4]}'}
-  - {key: 'wp', value: 'wp0'}
-  function_value: 0.0";
-rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
-done;
-
-for i in $(seq 1 3 )
-do
 param="update_type: 2
-duration: $((60+$i*600))
+duration: 982
 knowledge:
 - knowledge_type: 1
   instance_type: ''
   instance_name: ''
   attribute_name: 'material_at'
   values:
-  - {key: 'm', value: '${mats[4]}'}
-  - {key: 'wp', value: 'wp0'}
+  - {key: 'm', value: 'blue'}
+  - {key: 'wp', value: 'wp7'}
   function_value: 0.0";
+
+rosservice call /kcl_rosplan/update_knowledge_base_array "$param";param="update_type: 2
+duration: 305
+knowledge:
+- knowledge_type: 1
+  instance_type: ''
+  instance_name: ''
+  attribute_name: 'material_at'
+  values:
+  - {key: 'm', value: 'white'}
+  - {key: 'wp', value: 'wp96'}
+  function_value: 0.0";
+
 rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
-done;

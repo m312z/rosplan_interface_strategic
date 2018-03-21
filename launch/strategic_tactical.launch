@@ -45,7 +45,7 @@
 
 	</node>
 
-	<!-- strategic planner interface -->
+	<!-- strategic planner interface had to change timeout-->
 	<include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
 		<arg name="node_name"            value="strategic_planner_interface" />
 		<arg name="use_problem_topic"    value="true" />
@@ -54,10 +54,10 @@
 		<arg name="domain_path"          value="$(arg domain_strategic)" />
 		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_strategic.pddl" />
 		<arg name="data_path"            value="$(find rosplan_demos)/common/strategic_" />
-		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
+		<arg name="planner_command"      value="timeout 70 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 	</include>
 
-	<!-- tactical planner interface -->
+	<!-- tactical planner interface had to change timeout-->
 	<include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
 		<arg name="node_name"            value="tactical_planner_interface" />
 		<arg name="use_problem_topic"    value="true" />
@@ -66,7 +66,7 @@
 		<arg name="domain_path"          value="$(arg domain_strategic)" />
 		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_tactical.pddl" />
 		<arg name="data_path"            value="$(find rosplan_demos)/common/tactical_" />
-		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
+		<arg name="planner_command"      value="timeout 70 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 	</include>
 
 	<!-- strategic problem generation -->
@@ -136,8 +136,13 @@
 		<param name="action_dispatch_topic" value="/tactical_plan_dispatch/action_dispatch" />
 		<param name="action_feedback_topic" value="/tactical_plan_dispatch/action_feedback" />
 	</node>
-	<node name="rosplan_interface_navigation" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
-		<param name="pddl_action_name" value="goto_waypoint" />
+	<node name="rosplan_interface_navigation_tact" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="pddl_action_name" value="tactical_goto" />
+		<param name="action_dispatch_topic" value="/tactical_plan_dispatch/action_dispatch" />
+		<param name="action_feedback_topic" value="/tactical_plan_dispatch/action_feedback" />
+	</node>
+	<node name="rosplan_interface_navigation_strat" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="pddl_action_name" value="strategic_goto" />
 		<param name="action_dispatch_topic" value="/tactical_plan_dispatch/action_dispatch" />
 		<param name="action_feedback_topic" value="/tactical_plan_dispatch/action_feedback" />
 	</node>
@@ -185,8 +190,13 @@
 		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
 		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
 	</node>
-	<node name="strategic_interface_navigation" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
-		<param name="pddl_action_name" value="goto_waypoint" />
+	<node name="strategic_interface_navigation_tact" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="pddl_action_name" value="tactical_goto" />
+		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
+		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
+	</node>
+	<node name="strategic_interface_navigation_strat" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="pddl_action_name" value="strategic_goto" />
 		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
 		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
 	</node>
