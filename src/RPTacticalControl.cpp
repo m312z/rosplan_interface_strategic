@@ -6,7 +6,8 @@ namespace KCL_rosplan {
 	/* constructor */
 	RPTacticalControl::RPTacticalControl(ros::NodeHandle &nh) {
 
-		current_goals_client = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>("/kcl_rosplan/get_current_goals");
+		current_goals_client = nh.serviceClient<rosplan_knowledge_msgs::GetAttributeService>("/rosplan_knowledge_base/state/goals");
+		local_update_knowledge_client = nh.serviceClient<rosplan_knowledge_msgs::KnowledgeUpdateService>("/rosplan_knowledge_base/update");
 
 		// planning interface
 		std::string goalTopic = "/rosplan_interface_strategic_control/get_mission_goals";
@@ -64,7 +65,7 @@ namespace KCL_rosplan {
 		updateSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
 		updateSrv.request.knowledge.attribute_name = "";
 		updateSrv.request.knowledge.values.clear();
-		update_knowledge_client.call(updateSrv);
+		local_update_knowledge_client.call(updateSrv);
 
 		// add mission goal to knowledge base
 		rosplan_knowledge_msgs::KnowledgeUpdateService updateGoalSrv;
@@ -72,7 +73,7 @@ namespace KCL_rosplan {
 		updateGoalSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
 		for(int i = 0; i<mission_goals.size(); i++) {
 			updateGoalSrv.request.knowledge = mission_goals[i];
-			if(!update_knowledge_client.call(updateGoalSrv)) {
+			if(!local_update_knowledge_client.call(updateGoalSrv)) {
 				ROS_INFO("KCL: (%s) failed to update PDDL goal.", ros::this_node::getName().c_str());
 				restoreGoals();
 				return false;
@@ -93,7 +94,7 @@ namespace KCL_rosplan {
 		updateGoalSrv.request.update_type = rosplan_knowledge_msgs::KnowledgeUpdateService::Request::REMOVE_GOAL;
 		for(int i = 0; i<mission_goals.size(); i++) {
 			updateGoalSrv.request.knowledge = mission_goals[i];
-			if(!update_knowledge_client.call(updateGoalSrv)) {
+			if(!local_update_knowledge_client.call(updateGoalSrv)) {
 				ROS_INFO("KCL: (%s) failed to update PDDL goal.", ros::this_node::getName().c_str());
 			}
 		}
@@ -103,7 +104,7 @@ namespace KCL_rosplan {
 		updateGoalSrv.request.knowledge.knowledge_type = rosplan_knowledge_msgs::KnowledgeItem::FACT;
 		for(int i = 0; i<old_goals.size(); i++) {
 			updateGoalSrv.request.knowledge = old_goals[i];
-			if(!update_knowledge_client.call(updateGoalSrv)) {
+			if(!local_update_knowledge_client.call(updateGoalSrv)) {
 				ROS_INFO("KCL: (%s) failed to update PDDL goal.", ros::this_node::getName().c_str());
 			}
 		}

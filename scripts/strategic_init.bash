@@ -8,7 +8,10 @@ mats=(
 	'red'
    )
 
-param="knowledge:
+type="update_type:
+- 0";
+param="
+knowledge:
 - knowledge_type: 0
   instance_type: 'robot'
   instance_name: 'kenny'
@@ -16,6 +19,10 @@ param="knowledge:
   function_value: 0.0";
 for i in $(seq 0 3 )
 do
+type="$type
+- 0
+- 0
+- 0";
 param="$param
 - knowledge_type: 0
   instance_type: 'waypoint'
@@ -40,6 +47,12 @@ param="$param
   function_value: 0.0";
 done;
 
+type="$type
+- 0
+- 0
+- 0
+- 0
+- 0";
 param="$param
 - knowledge_type: 1
   instance_type: ''
@@ -76,37 +89,30 @@ param="$param
   - {key: 'r', value: 'kenny'}
   function_value: 0.0";
 
-rosservice call /kcl_rosplan/update_knowledge_base_array "update_type: 0
-$param"
-
-for i in $(seq 1 3 )
+for i in $(seq 1 8 )
 do
-param="update_type: 0
-duration: $(($i*600))
-knowledge:
+type="$type
+- 0
+- 0";
+param="$param
 - knowledge_type: 1
+  initial_time: { secs: $(( $(date +%s) + $i*600)), nsecs: 0}
   instance_type: ''
   instance_name: ''
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: '${mats[4]}'}
   - {key: 'wp', value: 'wp0'}
-  function_value: 0.0";
-rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
-done;
-
-for i in $(seq 1 3 )
-do
-param="update_type: 2
-duration: $((60+$i*600))
-knowledge:
+  is_negative: False
 - knowledge_type: 1
+  initial_time: { secs: $(( $(date +%s) + 60 + $i*600)), nsecs: 0}
   instance_type: ''
   instance_name: ''
   attribute_name: 'material_at'
   values:
   - {key: 'm', value: '${mats[4]}'}
   - {key: 'wp', value: 'wp0'}
-  function_value: 0.0";
-rosservice call /kcl_rosplan/update_knowledge_base_array "$param";
+  is_negative: True";
 done;
+
+rosservice call /rosplan_knowledge_base/update_array "$type $param"

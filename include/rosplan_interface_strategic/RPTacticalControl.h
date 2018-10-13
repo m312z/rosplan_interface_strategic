@@ -38,6 +38,8 @@ namespace KCL_rosplan {
 		ros::ServiceClient parsing_client;
 		ros::ServiceClient dispatch_client;
 
+		ros::ServiceClient local_update_knowledge_client;
+
 		std::vector<rosplan_knowledge_msgs::KnowledgeItem> mission_goals;
 		std::vector<rosplan_knowledge_msgs::KnowledgeItem> old_goals;
 
