@@ -29,7 +29,7 @@ namespace KCL_rosplan {
 		problem_client = nh.serviceClient<std_srvs::Empty>(probTopic);
 		planning_client = nh.serviceClient<std_srvs::Empty>(planTopic);
 		parsing_client = nh.serviceClient<std_srvs::Empty>(parsTopic);
-		dispatch_client = nh.serviceClient<std_srvs::Empty>(dispTopic);
+		dispatch_client = nh.serviceClient<rosplan_dispatch_msgs::DispatchService>(dispTopic);
 	}
 
 	/**
@@ -133,6 +133,7 @@ namespace KCL_rosplan {
 		ROS_INFO("KCL: (%s) Sending to planning system.", ros::this_node::getName().c_str());
 
 		std_srvs::Empty empty;
+		rosplan_dispatch_msgs::DispatchService dispatch;
 		cancel_client.call(empty);
 		ros::Duration(1).sleep(); // sleep for a second
 		problem_client.call(empty);
@@ -146,7 +147,7 @@ namespace KCL_rosplan {
 			ros::Duration(1).sleep(); // sleep for a second
 
 			// dispatch tactical plan
-			bool dispatch_success = dispatch_client.call(empty);
+			bool dispatch_success = dispatch_client.call(dispatch);
 
 			restoreGoals();
 			return dispatch_success;
@@ -157,19 +158,19 @@ namespace KCL_rosplan {
 	}
 } // close namespace
 
-	/*-------------*/
-	/* Main method */
-	/*-------------*/
+/*-------------*/
+/* Main method */
+/*-------------*/
 
-	int main(int argc, char **argv) {
+int main(int argc, char **argv) {
 
-		ros::init(argc, argv, "rosplan_interface_tactical_control");
-		ros::NodeHandle nh("~");
+	ros::init(argc, argv, "rosplan_interface_tactical_control");
+	ros::NodeHandle nh("~");
 
-		// create PDDL action subscriber
-		KCL_rosplan::RPTacticalControl rptc(nh);
+	// create PDDL action subscriber
+	KCL_rosplan::RPTacticalControl rptc(nh);
 
-		rptc.runActionInterface();
+	rptc.runActionInterface();
 
-		return 0;
-	}
+	return 0;
+}
