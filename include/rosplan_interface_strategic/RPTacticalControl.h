@@ -11,6 +11,7 @@
 #include "rosplan_knowledge_msgs/GetAttributeService.h"
 #include "rosplan_dispatch_msgs/ActionDispatch.h"
 #include "rosplan_dispatch_msgs/ActionFeedback.h"
+#include "rosplan_dispatch_msgs/DispatchService.h"
 
 #include "std_msgs/String.h"
 #include "std_srvs/Empty.h"
@@ -25,33 +26,33 @@
  */
 namespace KCL_rosplan {
 
-	class RPTacticalControl: public RPActionInterface
-	{
+    class RPTacticalControl: public RPActionInterface
+    {
 
-	private:
+    private:
 
-		ros::ServiceClient current_goals_client;
-		ros::ServiceClient mission_goals_client;
-		ros::ServiceClient cancel_client;
-		ros::ServiceClient problem_client;
-		ros::ServiceClient planning_client;
-		ros::ServiceClient parsing_client;
-		ros::ServiceClient dispatch_client;
+        ros::ServiceClient current_goals_client;
+        ros::ServiceClient mission_goals_client;
+        ros::ServiceClient cancel_client;
+        ros::ServiceClient problem_client;
+        ros::ServiceClient planning_client;
+        ros::ServiceClient parsing_client;
+        ros::ServiceClient dispatch_client;
 
-		ros::ServiceClient local_update_knowledge_client;
+        ros::ServiceClient local_update_knowledge_client;
 
-		std::vector<rosplan_knowledge_msgs::KnowledgeItem> mission_goals;
-		std::vector<rosplan_knowledge_msgs::KnowledgeItem> old_goals;
+        std::vector<rosplan_knowledge_msgs::KnowledgeItem> mission_goals;
+        std::vector<rosplan_knowledge_msgs::KnowledgeItem> old_goals;
 
-	public:
+    public:
 
-		/* constructor */
-		RPTacticalControl(ros::NodeHandle &nh);
+        /* constructor */
+        RPTacticalControl(ros::NodeHandle &nh);
 
-		/* listen to and process action_dispatch topic */
-		bool concreteCallback(const rosplan_dispatch_msgs::ActionDispatch::ConstPtr& msg);
-		bool initGoals(const std::string &mission);
-		void restoreGoals();
-	};
+        /* listen to and process action_dispatch topic */
+        bool concreteCallback(const rosplan_dispatch_msgs::ActionDispatch::ConstPtr& msg);
+        bool initGoals(const std::string &mission);
+        void restoreGoals();
+    };
 }
 #endif
