@@ -3,6 +3,7 @@
 
 	<!-- arguments -->
 	<arg name="domain_strategic"	default="$(find rosplan_interface_strategic)/common/domain_strand.pddl" />
+	<arg name="problem_normal"	default="$(find rosplan_interface_strategic)/common/problem_strand.pddl" />
 
 	<!-- scene database (MongoDB) -->
 	<include file="$(find mongodb_store)/launch/mongodb_store.launch">
@@ -13,6 +14,7 @@
 	<!-- knowledge base -->
 	<node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
 		<param name="domain_path" value="$(arg domain_strategic)" />
+		<param name="problem_path" value="$(arg problem_normal)" />
 		<param name="database_path" value="$(find rosplan_knowledge_base)/common/mongoDB/" />
 		<!-- conditional planning flags -->
 		<param name="use_unknowns" value="false" />
