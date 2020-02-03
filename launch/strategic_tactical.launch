@@ -5,20 +5,13 @@
 	<arg name="domain_strategic"	default="$(find rosplan_interface_strategic)/common/domain_strand.pddl" />
 	<arg name="problem_normal"	default="$(find rosplan_interface_strategic)/common/problem_strand.pddl" />
 
-	<!-- scene database (MongoDB) -->
-	<include file="$(find mongodb_store)/launch/mongodb_store.launch">
-		<arg name="db_path" value="$(find rosplan_knowledge_base)/common/mongoDB/"/>
-	</include>
-
-
-	<!-- knowledge base -->
-	<node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
-		<param name="domain_path" value="$(arg domain_strategic)" />
-		<param name="problem_path" value="$(arg problem_normal)" />
-		<param name="database_path" value="$(find rosplan_knowledge_base)/common/mongoDB/" />
-		<!-- conditional planning flags -->
-		<param name="use_unknowns" value="false" />
-	</node>
+    <!-- knowledge base -->
+    <node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
+        <param name="domain_path" value="$(arg domain_strategic)" />
+        <param name="problem_path" value="$(arg problem_normal)" />
+        <!-- conditional planning flags -->
+        <param name="use_unknowns" value="false" />
+    </node>
 
 	<!-- strategic plan control -->
 	<node name="rosplan_interface_strategic_control" pkg="rosplan_interface_strategic" type="rpstrategiccontrol" respawn="false" output="screen">
@@ -56,8 +49,8 @@
 		<arg name="problem_topic"        value="/strategic_problem_interface/problem_instance" />
 		<arg name="planner_topic"        value="planner_output" />
 		<arg name="domain_path"          value="$(arg domain_strategic)" />
-		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_strategic.pddl" />
-		<arg name="data_path"            value="$(find rosplan_demos)/common/strategic_" />
+		<arg name="problem_path"         value="$(find rosplan_interface_strategic)/common/temp/problem_strategic.pddl" />
+		<arg name="data_path"            value="$(find rosplan_interface_strategic)/common/temp/strategic" />
 		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 	</include>
 
@@ -68,8 +61,8 @@
 		<arg name="problem_topic"        value="/tactical_problem_interface/problem_instance" />
 		<arg name="planner_topic"        value="planner_output" />
 		<arg name="domain_path"          value="$(arg domain_strategic)" />
-		<arg name="problem_path"         value="$(find rosplan_demos)/common/problem_tactical.pddl" />
-		<arg name="data_path"            value="$(find rosplan_demos)/common/tactical_" />
+		<arg name="problem_path"         value="$(find rosplan_interface_strategic)/common/temp/problem_tactical.pddl" />
+		<arg name="data_path"            value="$(find rosplan_interface_strategic)/common/temp/tactical" />
 		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
 	</include>
 
@@ -77,7 +70,7 @@
 	<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
 		<arg name="node_name"        value="strategic_problem_interface" />
 		<arg name="domain_path"      value="$(arg domain_strategic)" />
-		<arg name="problem_path"     value="$(find rosplan_demos)/common/problem_strategic.pddl" />
+		<arg name="problem_path"     value="$(find rosplan_interface_strategic)/common/temp/problem_strategic.pddl" />
 		<arg name="problem_topic"    value="problem_instance" />
 	</include>
 
@@ -85,7 +78,7 @@
 	<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
 		<arg name="node_name"        value="tactical_problem_interface" />
 		<arg name="domain_path"      value="$(arg domain_strategic)" />
-		<arg name="problem_path"     value="$(find rosplan_demos)/common/problem_tactical.pddl" />
+		<arg name="problem_path"     value="$(find rosplan_interface_strategic)/common/temp/problem_tactical.pddl" />
 		<arg name="problem_topic"    value="problem_instance" />
 	</include>
 
@@ -123,11 +116,7 @@
 	<!-- interfaces -->
 	<!-- ********** -->
 
-	<node name="rosplan_roadmap_server" pkg="rosplan_interface_mapping" type="rpsimplemapServer" respawn="false" output="screen">
-	    <param name="data_path" value="$(find rosplan_planning_system)/common/" />
-		<param name="waypoint_file" value="$(find rosplan_interface_strategic)/scripts/waypoint_file.txt" />
-	    <param name="fixed_frame" value="map" />
-	</node>
+    <rosparam file="$(find rosplan_interface_strategic)/common/waypoints.yaml" command="load" />
 
 	<!-- sim actions -->
 	<include file="$(find rosplan_planning_system)/launch/includes/simulated_action.launch" >
