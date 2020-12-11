@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<launch>
+
+	<!-- arguments -->
+	<arg name="domain_strategic" default="$(find rosplan_interface_strategic)/common/domain_strand.pddl" />
+	<arg name="problem_normal"   default="$(find rosplan_interface_strategic)/common/problem_strand.pddl" />
+
+    <!-- ROBOTS -->
+    <include file="$(find rosplan_interface_strategic)/launch/tactical_robot.launch">
+        <arg name="robot_name"  value="robot01" />
+        <arg name="domain_strategic" value="$(arg domain_strategic)" />
+    </include>
+
+    <!-- knowledge base -->
+    <node name="rosplan_knowledge_base" pkg="rosplan_knowledge_base" type="knowledgeBase" respawn="false" output="screen">
+        <param name="domain_path" value="$(arg domain_strategic)" />
+        <param name="problem_path" value="$(arg problem_normal)" />
+        <!-- conditional planning flags -->
+        <param name="use_unknowns" value="false" />
+    </node>
+
+	<!-- strategic plan control -->
+	<node name="rosplan_interface_strategic_control" pkg="rosplan_interface_strategic" type="rpstrategiccontrol" respawn="false" output="screen">
+		<!-- deliberative planning interfaces -->
+		<param name="problem_service_topic"  value="/strategic_problem_interface/problem_generation_server" />
+		<param name="planning_service_topic" value="/strategic_planner_interface/planning_server" />
+		<param name="parsing_service_topic"  value="/strategic_parsing_interface/parse_plan" />
+		<param name="complete_plan_topic"    value="/strategic_parsing_interface/complete_plan" />
+
+	</node>
+
+	<!-- strategic planner interface -->
+	<include file="$(find rosplan_planning_system)/launch/includes/planner_interface.launch">
+		<arg name="node_name"            value="strategic_planner_interface" />
+		<arg name="use_problem_topic"    value="true" />
+		<arg name="problem_topic"        value="/strategic_problem_interface/problem_instance" />
+		<arg name="planner_topic"        value="planner_output" />
+		<arg name="domain_path"          value="$(arg domain_strategic)" />
+		<arg name="problem_path"         value="$(find rosplan_interface_strategic)/common/temp/problem_strategic.pddl" />
+		<arg name="data_path"            value="$(find rosplan_interface_strategic)/common/temp/strategic" />
+		<arg name="planner_command"      value="timeout 10 $(find rosplan_planning_system)/common/bin/popf DOMAIN PROBLEM" />
+	</include>
+
+	<!-- strategic problem generation -->
+	<include file="$(find rosplan_planning_system)/launch/includes/problem_interface.launch">
+		<arg name="node_name"        value="strategic_problem_interface" />
+		<arg name="domain_path"      value="$(arg domain_strategic)" />
+		<arg name="problem_path"     value="$(find rosplan_interface_strategic)/common/temp/problem_strategic.pddl" />
+		<arg name="problem_topic"    value="problem_instance" />
+	</include>
+
+	<!-- strategic plan parsing -->
+	<include file="$(find rosplan_planning_system)/launch/includes/parsing_interface.launch">
+		<arg name="node_name"        value="strategic_parsing_interface" />
+		<arg name="planner_topic"    value="/strategic_planner_interface/planner_output" />
+		<arg name="plan_topic"       value="complete_plan" />
+	</include>
+
+	<!-- strategic plan dispatch -->
+	<include file="$(find rosplan_planning_system)/launch/includes/dispatch_interface.launch">
+		<arg name="node_name"                value="strategic_plan_dispatch" />
+		<arg name="plan_topic"               value="/strategic_parsing_interface/complete_plan" />
+		<arg name="action_dispatch_topic"    value="action_dispatch" />
+		<arg name="action_feedback_topic"    value="action_feedback" />
+	</include>
+
+	<!-- ********** -->
+	<!-- interfaces -->
+	<!-- ********** -->
+
+    <rosparam file="$(find rosplan_interface_strategic)/common/waypoints.yaml" command="load" />
+
+	<!-- sim strategic actions -->
+	<node name="rosplan_interface_strategic_dock" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="action_duration"	value="5.0" />
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="pddl_action_name" value="dock" />
+		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
+		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
+	</node>
+	<node name="rosplan_interface_strategic_undock" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="action_duration"	value="2.0" />
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="pddl_action_name" value="undock" />
+		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
+		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
+	</node>
+	<node name="rosplan_interface_strategic_localise" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="action_duration"	value="10.0" />
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="pddl_action_name" value="localise" />
+		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
+		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
+	</node>
+	<node name="rosplan_interface_strategic_goto_waypoint" pkg="rosplan_planning_system" type="simulatedAction" respawn="false" output="screen">
+		<param name="action_duration"	value="5.0" />
+		<param name="knowledge_base" value="rosplan_knowledge_base" />
+		<param name="pddl_action_name" value="goto_waypoint" />
+		<param name="action_dispatch_topic" value="/strategic_plan_dispatch/action_dispatch" />
+		<param name="action_feedback_topic" value="/strategic_plan_dispatch/action_feedback" />
+	</node>
+</launch>
