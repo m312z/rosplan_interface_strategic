@@ -3,11 +3,15 @@
 
 	<!-- arguments -->
 	<arg name="domain_strategic" default="$(find rosplan_interface_strategic)/common/domain_strand.pddl" />
-	<arg name="problem_normal"   default="$(find rosplan_interface_strategic)/common/problem_strand.pddl" />
+	<arg name="problem_normal"   default="$(find rosplan_interface_strategic)/common/problem_multirobot.pddl" />
 
     <!-- ROBOTS -->
     <include file="$(find rosplan_interface_strategic)/launch/tactical_robot.launch">
         <arg name="robot_name"  value="robot01" />
+        <arg name="domain_strategic" value="$(arg domain_strategic)" />
+    </include>
+    <include file="$(find rosplan_interface_strategic)/launch/tactical_robot.launch">
+        <arg name="robot_name"  value="robot02" />
         <arg name="domain_strategic" value="$(arg domain_strategic)" />
     </include>
 

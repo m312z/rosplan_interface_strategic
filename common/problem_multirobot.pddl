@@ -2,17 +2,18 @@
 (:domain turtlebot)
 (:objects
     wp0 wp1 wp2 wp3 - waypoint
-    kenny - robot
+    robot01 robot02 - robot
     i01 i02 i03 - item
 )
 (:init
-    (robot_at kenny wp0)
+    (robot_at robot01 wp0)
+    (robot_at robot02 wp0)
 
+    (not_localised robot01)
+    (not_localised robot02)
 
-    (not_localised kenny)
-
-
-    (docked kenny)
+    (docked robot01)
+    (docked robot02)
 
     (dock_at wp0)
 
@@ -38,18 +39,13 @@
     (at 4558.56 (material_at red wp0))
     (at 4618.56 (not (material_at red wp0)))
 
+    (not_busy robot01)
+    (not_busy robot02)
 
-
-
-    (not_busy kenny)
-
-
-
-
-    (= (carrying kenny black) 0)
-    (= (carrying kenny blue) 0)
-    (= (carrying kenny green) 0)
-    (= (carrying kenny white) 0)
+    (= (carrying robot01 black) 0)
+    (= (carrying robot01 blue) 0)
+    (= (carrying robot01 green) 0)
+    (= (carrying robot01 white) 0)
 
     (= (requires i01 black) 1)
     (= (requires i02 black) 1)
