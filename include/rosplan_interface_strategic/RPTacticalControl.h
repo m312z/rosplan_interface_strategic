@@ -44,12 +44,16 @@ namespace KCL_rosplan {
         std::vector<rosplan_knowledge_msgs::KnowledgeItem> mission_goals;
         std::vector<rosplan_knowledge_msgs::KnowledgeItem> old_goals;
 
+        std::string robot_name;
+
     public:
 
         /* constructor */
         RPTacticalControl(ros::NodeHandle &nh);
 
         /* listen to and process action_dispatch topic */
+    	void runActionInterface();
+        void dispatchCallback(const rosplan_dispatch_msgs::ActionDispatch::ConstPtr& msg);
         bool concreteCallback(const rosplan_dispatch_msgs::ActionDispatch::ConstPtr& msg);
         bool initGoals(const std::string &mission);
         void restoreGoals();

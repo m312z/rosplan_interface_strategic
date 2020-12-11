@@ -223,7 +223,7 @@ namespace KCL_rosplan {
 		return nodes[nodes.size() - 1].action.parameters[0];
 	}
 
-	//going to change when I have the updated edge durations
+	// going to change when I have the updated edge durations
 	int RPStrategicControl::getMinTime(rosplan_dispatch_msgs::EsterelPlan& plan) const{
 		//create graph layout to help with the algorithm - max 10000 so that non connected edges wont be taken into account
 		std::vector<std::vector<int> > graph(plan.nodes.size(), std::vector<int>(plan.nodes.size(), 10000));

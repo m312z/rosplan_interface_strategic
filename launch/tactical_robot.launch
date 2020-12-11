@@ -10,6 +10,8 @@
 	    <!-- tactical plan control -->
 	    <node name="rosplan_interface_tactical_control" pkg="rosplan_interface_strategic" type="rptacticalcontrol" respawn="false" output="screen">
 
+            <param name="robot_name" value="$(arg robot_name)" />
+
 		    <!-- action server -->
 		    <param name="knowledge_base" value="/rosplan_knowledge_base" />
 		    <param name="pddl_action_name" value="complete_mission" />
